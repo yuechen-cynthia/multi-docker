@@ -14,7 +14,7 @@ after_success:
   - docker build -t yuechen-cynthia/multi-server ./server
   - docker build -t yuechen-cynthia/multi-worker ./worker
   # Login in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$docker_id" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push yuechen-cynthia/multi-client
   - docker push yuechen-cynthia/multi-nginx
