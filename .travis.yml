@@ -3,20 +3,20 @@ services:
 - docker
 
 before_install:
- - docker build -t yuechen-cynthia/multitest -f ./client/Dockerfile.dev ./client
+ - docker build -t yuechen4docker/multitest -f ./client/Dockerfile.dev ./client
 
 script:
- - docker run yuechen-cynthia/multitest npm test -- --coverage
+ - docker run yuechen4docker/multitest npm test -- --coverage
 
 after_success:
-  - docker build -t yuechen-cynthia/multi-client ./client
-  - docker build -t yuechen-cynthia/multi-nginx ./nginx
-  - docker build -t yuechen-cynthia/multi-server ./server
-  - docker build -t yuechen-cynthia/multi-worker ./worker
+  - docker build -t yuechen4docker/multi-client ./client
+  - docker build -t yuechen4docker/multi-nginx ./nginx
+  - docker build -t yuechen4docker/multi-server ./server
+  - docker build -t yuechen4docker/multi-worker ./worker
   # Login in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push yuechen-cynthia/multi-client
-  - docker push yuechen-cynthia/multi-nginx
-  - docker push yuechen-cynthia/multi-server
-  - docker push yuechen-cynthia/multi-worker
+  - docker push yuechen4docker/multi-client
+  - docker push yuechen4docker/multi-nginx
+  - docker push yuechen4docker/multi-server
+  - docker push yuechen4docker/multi-worker
