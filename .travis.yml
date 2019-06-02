@@ -20,3 +20,20 @@ after_success:
   - docker push yuechen4docker/multi-nginx
   - docker push yuechen4docker/multi-server
   - docker push yuechen4docker/multi-worker
+
+  #Before this, set IAM in docker environment AWS_ACCESS_KEY AWS_SECRET_KEY
+
+  deploy:
+    provider: elasticbeanstalk
+    region: us-west-1
+    app: multi-docker
+    env: MultiDocker-env
+    # copy from S3
+    bucket_name: elasticbeanstalk-us-west-1-????
+    bucket_path: docker-multi
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: $AWS_SECRET_KEY
+    
